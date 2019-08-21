@@ -1,7 +1,10 @@
 <?php
     require_once('../backend/config.php');
-    if(!isset($_SESSION['id'])) {
+    if(!isset($_SESSION['id']) || $_SESSION['level'] != 2) {
         header('location: '.$_BASE_URL.'login.php');
+    }
+    if(!isset($_GET['id'])) {
+        header('location: ./');
     }
     require_once('../backend/models/User.php');
     $user = User::get_by_id($_GET['id']);
@@ -21,7 +24,7 @@
                             <h2>Admin Panel</h2>
                             <h4>Editar usuario</h4>
                         </div>
-                        <form class="form" action="_crud.php?accion=editar&id=<?php echo $_GET['id'] ?>" method="POST">
+                        <form class="form" action="_crud.php?action=edit&id=<?php echo $_GET['id'] ?>" method="POST">
                             <div class="columns">
                                 <div class="column">
                                     <div class="field">
@@ -62,7 +65,7 @@
                                 <label class="label">Nueva contraseña</label>
                                 <small class="help">Deja el campo vacío para mantener la contraseña actual</small>
                                 <div class="control">
-                                    <input class="input" type="password" placeholder="Nueva Contraseña" name="password">
+                                    <input class="input" type="password" placeholder="Nueva Contraseña" name="pass">
                                 </div>
                             </div>
                             <hr>

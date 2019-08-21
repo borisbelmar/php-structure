@@ -15,9 +15,11 @@
         <span class="navbar-item">
           |
         </span>
+        <?php if($_SESSION['level'] == 2): ?>
         <a class="navbar-item" href="<?php echo $_BASE_URL.'users/' ?>">
           Users
         </a>
+        <?php endif ?>
       </div>
       <div class="navbar-end">
         <span class="navbar-item">

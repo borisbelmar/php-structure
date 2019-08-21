@@ -49,7 +49,7 @@
             if($db_connection->connect_error) {
                 echo $db_connection->connect_error;
             } else {
-                $query = 'SELECT usr_id, usr_username, usr_email, usr_pass, usr_firstname, usr_lastname, usr_createDate FROM users WHERE usr_username = "'.$username.'"';
+                $query = 'SELECT usr_id, usr_username, usr_email, usr_pass, usr_firstname, usr_lastname, usr_createDate, usr_level FROM users WHERE usr_username = "'.$username.'"';
                 $result = $db_connection->query($query);
                 $user = $result->fetch_assoc();
                 $db_connection->close();
@@ -62,31 +62,46 @@
             if($db_connection->connect_error) {
                 echo $db_connection->connect_error;
             } else {
-                $query = 'SELECT usr_id, usr_username, usr_email, usr_pass, usr_firstname, usr_lastname, usr_createDate FROM users WHERE usr_id = "'.$id.'"';
+                $query = 'SELECT usr_id, usr_username, usr_email, usr_pass, usr_firstname, usr_lastname, usr_createDate, usr_level FROM users WHERE usr_id = '.$id;
                 $result = $db_connection->query($query);
                 $user = $result->fetch_assoc();
                 $db_connection->close();
                 return $user;
             }
         }
-        static function update_by_id($id, $firstname, $lastname) {
+        static function update_by_id($id, $email, $firstname, $lastname) {
             $database = new Database();
             $db_connection = $database->connection();
             if($db_connection->connect_error) {
                 echo $db_connection->connect_error;
             } else {
-                $query = "UPDATE users SET usr_firstname = '".$firstname."', usr_lastname = '".$lastname."' WHERE usr_id = '".$id."'";
+                $query = "UPDATE users SET usr_email = '".$email."', usr_firstname = '".$firstname."', usr_lastname = '".$lastname."' WHERE usr_id = ".$id;
                 $result = $db_connection->query($query);
+                $db_connection->close();
+            }
+        }
+
+        static function update_password($id, $pass) {
+            $database = new Database();
+            $db_connection = $database->connection();
+            if($db_connection->connect_error) {
+                echo $db_connection->connect_error;
+            } else {
+                $query = "UPDATE users SET usr_pass = '".$pass."' WHERE usr_id = ".$id;
+                $result = $db_connection->query($query);
+                $db_connection->close();
             }
         }
 
         static function delete_by_id($id) {
-            $query = "DELETE FROM users WHERE usr_id = '".$id."'";
-            if($this->connect->query($query)) {
-                return $id;
+            $database = new Database();
+            $db_connection = $database->connection();
+            if($db_connection->connect_error) {
+                echo $db_connection->connect_error;
             } else {
-                echo "Error al eliminar al usuario";
-                return NULL;
+                $query = 'DELETE FROM users WHERE usr_id = '.$id;
+                $result = $db_connection->query($query);
+                $db_connection->close();
             }
         }
     }

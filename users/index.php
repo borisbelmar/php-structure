@@ -1,6 +1,6 @@
 <?php
     require_once('../backend/config.php');
-    if(!isset($_SESSION['id'])) {
+    if(!isset($_SESSION['id']) || $_SESSION['level'] != 2) {
         header('location: '.$_BASE_URL.'login.php');
     }
     require_once('../backend/models/User.php');
@@ -50,8 +50,8 @@
                             <td><?php echo $user['usr_createDate']; ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $user['usr_id']; ?>" class="tag is-warning">Editar</a>
-                                <?php if($user['usr_id'] != $_SESSION['id']): ?>
-                                <a class="tag is-danger" href="_crud.php?accion=delete&id=<?php echo $user['usr_id']; ?>">Eliminar</a>
+                                <?php if($user['usr_id'] != $_SESSION['id'] || $user['usr_id']): ?>
+                                <a class="tag is-danger" href="_crud.php?action=delete&id=<?php echo $user['usr_id']; ?>">Eliminar</a>
                                 <?php endif ?>
                             </td>
                         </tr>

@@ -14,8 +14,8 @@
                     <div class="box">
                         <div class="content has-text-centered">
                             <h2>Admin Panel</h2>
-                            <?php if(isset($_SESSION['errors'])): ?>
-                            <p class="has-text-danger has-text-centered"><?php echo $_SESSION['errors'] ?></p>
+                            <?php if(isset($_SESSION['error'])): ?>
+                            <p class="has-text-danger has-text-centered"><?php echo $_SESSION['error'] ?></p>
                             <?php endif ?>
                         </div>
                         <form class="form" action="backend/auth/login.php" method="POST">
