@@ -12,5 +12,5 @@ CREATE TABLE IF NOT EXISTS users (
 	usr_createDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT PK_users PRIMARY KEY(usr_id, usr_username)
 ) DEFAULT CHARACTER SET UTF8MB4;
-INSERT INTO users(usr_username, usr_email, usr_pass, usr_firstname, usr_lastname) VALUES
-	('bbelmar', 'borisbelmarm@gmail.com', '$2y$10$0RTsUx2L8g7cw.7bQszKneU9XCLW9TVOPjfkibrk85aoYjSNqFtYm', 'Boris', 'Belmar');
+INSERT INTO users(usr_username, usr_email, usr_pass, usr_firstname, usr_lastname, usr_level) VALUES
+	('bbelmar', 'borisbelmarm@gmail.com', '$2y$10$0RTsUx2L8g7cw.7bQszKneU9XCLW9TVOPjfkibrk85aoYjSNqFtYm', 'Boris', 'Belmar', 2);
