@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__.'/database.php');
+    require_once('Database.php');
 	class User {
 		private $usr_id;
         private $usr_username;
